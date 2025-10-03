@@ -1,0 +1,88 @@
+/*Author:Levis kipruto chumba
+Reg NO:BSE-01-0036/2025
+*/
+import java.util.Scanner;
+
+/**
+ * Login System 
+ 
+ */
+public class LoginSystem {
+    
+    // Predefined valid credentials
+    private static final String VALID_USERNAME = "admin";
+    private static final String VALID_PASSWORD = "7725Le@v";
+    private static final int MAX_ATTEMPTS = 3;
+    
+    public static void main(String[] args) {
+        Scanner scanner;
+        scanner = new Scanner(System.in);
+        int attempts = 0;
+        boolean loginSuccessful = false;
+        
+        System.out.println("=== LOGIN SYSTEM () ===");
+        
+        System.out.println("You have " + MAX_ATTEMPTS + " attempts to login\n");
+        
+        // Loop for login attempts
+        while (attempts < MAX_ATTEMPTS && !loginSuccessful) {
+            attempts++;
+            System.out.println("=== Attempt " + attempts + " of " + MAX_ATTEMPTS + " ===");
+            
+            // Get username input
+            System.out.print("Enter username: ");
+            String username = scanner.nextLine().trim();
+            
+            // Get password 
+            System.out.print("Enter password: ");
+            String password = getPasswordForIDE(scanner);
+            
+            // Validate credentials
+            if (validateCredentials(username, password)) {
+                loginSuccessful = true;
+                System.out.println("\n✅ Login successful! Welcome, " + username + "!");
+            } else {
+                System.out.println("\n❌ Invalid username or password!");
+                
+                // Show remaining attempts if not the last attempt
+                if (attempts < MAX_ATTEMPTS) {
+                    System.out.println("You have " + (MAX_ATTEMPTS - attempts) + " attempt(s) remaining.\n");
+                    System.out.println("----------------------------------------");
+                }
+            }
+        }
+        
+        // Final outcome
+        if (!loginSuccessful) {
+            System.out.println("\n🚫 Maximum login attempts reached. Account locked!");
+            System.out.println("Please contact the system administrator.");
+        }
+        
+        scanner.close();
+    }
+    
+    
+    private static String getPasswordForIDE(Scanner scanner) {
+        
+        //  accept the password and then show masked version
+        String password = scanner.nextLine();
+        
+        // Display what was entered as masked for user feedback
+        System.out.print("Password entered: ");
+        for (int i = 0; i < password.length(); i++) {
+            System.out.print("*");
+        }
+        System.out.println(); // New line after masking display
+        
+        return password;
+    }
+    
+     
+    
+    /**
+     * Validates the entered credentials against predefined values
+     */
+    private static boolean validateCredentials(String username, String password) {
+        return username.equals(VALID_USERNAME) && password.equals(VALID_PASSWORD);
+    }
+}
