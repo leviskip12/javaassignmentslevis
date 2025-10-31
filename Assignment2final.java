@@ -42,7 +42,7 @@ public class ButtonDemo extends javax.swing.JFrame {
         displayPetImage(pet);
     }
 
-    // ✅ The fixed image display logic
+    
     private void displayPetImage(String pet) {
         String[] extensions = {".jpg", ".jpeg", ".png", ".gif", ".bmp"};
         String imagePath = null;
@@ -63,12 +63,12 @@ public class ButtonDemo extends javax.swing.JFrame {
                 );
                 icon = new ImageIcon(scaledImage);
 
-                // ✅ Use the text field as an image display area
+                
                 jTextField1.setText("");
                 jTextField1.setHorizontalAlignment(JTextField.CENTER);
                 jTextField1.setBackground(Color.WHITE);
 
-                // Use a JLabel as an icon holder inside the text field area
+                //  JLabel  icon holder inside the text field area
                 jTextField1.setLayout(new BorderLayout());
                 jTextField1.removeAll(); // clear previous icon
                 JLabel imageLabel = new JLabel(icon);
